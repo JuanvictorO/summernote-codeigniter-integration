@@ -25,10 +25,11 @@
 </head>
 
 <body>
-    <div class="form-group mt-5">
-        <label for="summernote">Insira o texto aqui:</label>
-        <div id="summernote"></div>
-    </div>
+    <div class="container">
+        <div class="form-group mt-5">
+            <label for="summernote">Insira o texto aqui:</label>
+            <div id="summernote"></div>
+        </div>
     </div>
 </body>
 <script>
