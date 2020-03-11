@@ -60,13 +60,16 @@
             processData: false,
             contentType: false,
             success: function(res) {
-                console.log(res.error);
-                // $('#summernote').summernote('insertImage', img);
-                //console.log(res);
+                if (res.error == 0) {
+                    $('#summernote').summernote('insertImage', res.message);
+                } else {
+                    toastr["warning"](res.message);
+                }
             },
             error: function(res) {
                 alert('Algo deu errado.');
-            }
+            },
+            dataType: 'json'
         });
     }
     // Deleta a imagem passada pela variável src

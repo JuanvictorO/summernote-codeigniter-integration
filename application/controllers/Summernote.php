@@ -28,7 +28,7 @@ class Summernote extends CI_Controller
                     'encrypt_name' => TRUE,
                     'upload_path' => './assets/uploads',
                     'allowed_types' => 'png|jpg',
-                    'max_size' => '1500'
+                    'max_size' => '100'
                 );
 
                 // Load upload library
@@ -39,7 +39,7 @@ class Summernote extends CI_Controller
                     $img_info = $this->upload->data();
                     $url = base_url('assets/uploads/') . $img_info['file_name'];
 
-                    $json =  array(
+                    $json = array(
                         'error' => 0,
                         'message' => $url
                     );
@@ -48,7 +48,7 @@ class Summernote extends CI_Controller
                 } else {
                     $json = array(
                         'error' => 1,
-                        'message' => $this->upload->display_errors()
+                        'message' => $this->upload->display_errors('<p class="mb-0">', '</p>')
                     );
 
                     echo json_encode($json);
