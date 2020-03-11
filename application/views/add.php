@@ -26,8 +26,30 @@
 </body>
 <script>
     $('#summernote').summernote({
-        height: 400
+        height: 400,
+        callbacks: {
+            onImageUpload: function(files, editor, welEditable) {
+                for (var i = files.length - 1; i >= 0; i--) {
+                    sendFile(files[i], this);
+                }
+            }
+        }
     });
+
+    function sendFile(file, el) {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        $.ajax({
+            data: form_data,
+            type: "POST",
+            url: "<?= base_url('summernote/uploadFile') ?>",
+            cache: false,
+            contentType: false,
+            success: function(url) {
+                $(el).summernote('editor.insertImage', url);
+            }
+        });
+    }
 </script>
 
 </html>
