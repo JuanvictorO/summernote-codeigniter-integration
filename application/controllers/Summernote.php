@@ -28,7 +28,7 @@ class Summernote extends CI_Controller
                     'encrypt_name' => TRUE,
                     'upload_path' => './assets/uploads',
                     'allowed_types' => 'png|jpg',
-                    'max_size' => '100'
+                    'max_size' => '1500'
                 );
 
                 // Load upload library
@@ -72,6 +72,29 @@ class Summernote extends CI_Controller
                 echo 'A imagem foi excluída com sucesso!';
             } else {
                 echo 'A imagem não foi passada';
+            }
+        }
+    }
+    /**
+     * Deleta uma imagem da pasta uploads quando a página é atualizada ou fechada
+     *
+     * @return string
+     */
+    public function deleteFileOnReload()
+    {
+        if (!$this->input->is_ajax_request()) {
+            return false;
+        } else {
+            $vetor = json_decode($this->input->post('imgs'));
+
+            for ($i = 0; $i < count($vetor); $i++) {
+                if (!empty($vetor[$i])) {
+                    $path = "./assets/uploads/" . $vetor[$i];
+                    if (file_exists($path) == 1) {
+                        unlink("./assets/uploads/" . $vetor[$i]);
+                        echo 'A imagem: ' . $vetor[$i] . ' foi excluída com sucesso!';
+                    }
+                }
             }
         }
     }

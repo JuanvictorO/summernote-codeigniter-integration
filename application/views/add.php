@@ -48,6 +48,9 @@
             }
         }
     });
+    //Variáveis globais que auxiliam nas funções(beforeunload) de exclusão de imagens
+    vetor = [''];
+    i = -1;
     // Função que faz o upload da foto para a pasta uploads
     $.upload = function(file) {
         let out = new FormData();
@@ -63,6 +66,9 @@
             success: function(res) {
                 if (res.error == 0) {
                     $('#summernote').summernote('insertImage', res.message);
+                    var img = res.message.split("/assets/uploads/");
+                    i++;
+                    vetor[i] = img[1];
                 } else {
                     toastr["warning"](res.message);
                 }
@@ -90,6 +96,28 @@
             }
         });
     }
+
+    //Verifica se a página será atualizada ou fecha e, antes do evento, chama a função
+    $(window).bind("beforeunload", function(event) {
+        deleteFileOnReload(vetor);
+    });
+    //Deleta todas as imagens passadas no array
+    function deleteFileOnReload(array) {
+        if (array != '') {
+            $.ajax({
+                data: {
+                    imgs: JSON.stringify(array)
+                },
+                method: "POST",
+                url: "<?= base_url('summernote/deleteFileOnReload') ?>",
+                cache: false,
+                success: function(resp) {
+                    console.log(resp);
+                }
+            });
+        }
+    }
+
     toastr.options = {
         "closeButton": false,
         "debug": false,
