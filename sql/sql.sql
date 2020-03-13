@@ -1,6 +1,8 @@
-create database summernote default charset utf8;
-use summernote;
-create table note(
-	id int not null primary key auto_increment,
-    texto text not null
+create database `summernote` default charset utf8;
+use `summernote`;
+create table `table`(
+	`id` int not null primary key auto_increment,
+    `title`varchar(200) not null,
+    `text` text not null,
+    `update_date` datetime not null
 )engine = InnoDB;
