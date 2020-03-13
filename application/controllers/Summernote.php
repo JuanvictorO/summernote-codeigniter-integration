@@ -12,6 +12,7 @@ class Summernote extends CI_Controller
     {
         $this->load->view('add');
     }
+
     /**
      * Adiciona uma imagem a pasta uploads
      *
@@ -56,10 +57,11 @@ class Summernote extends CI_Controller
             }
         }
     }
+
     /**
      * Deleta uma imagem da pasta uploads
      *
-     * @return string
+     * @return void
      */
     public function deleteFile()
     {
@@ -75,12 +77,13 @@ class Summernote extends CI_Controller
             }
         }
     }
+
     /**
      * Deleta uma imagem da pasta uploads quando a página é atualizada ou fechada
      *
-     * @return string
+     * @return void
      */
-    public function deleteFileOnReload()
+    public function deleteFileBeforeUnload()
     {
         if (!$this->input->is_ajax_request()) {
             return false;

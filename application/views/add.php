@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="author" content="https://github.com/JuanvictorO">
     <meta name="description" content="Testing the summernote with a table">
+
     <!-- Jquery CDNjs -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <!-- BOOTSTRAP 4.0 CDNjs -->
     <script src="<?= base_url('assets/vendor/') ?>bootstrap-4.4.1/popper.min.js"></script>
     <link rel="stylesheet" href="<?= base_url('assets/vendor/') ?>bootstrap-4.4.1/bootstrap.min.css">
@@ -14,9 +16,8 @@
     <!--script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script-->
+
     <!-- Summernote CDNjs -->
-    <!--link rel="stylesheet" href="<?= base_url('assets/vendor/') ?>summernote/summernote.min.css">
-    <script src="<?= base_url('assets/vendor/') ?>summernote/summernote.min.css"></script-->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
     <!-- Toastr CDNjs -->
@@ -33,7 +34,7 @@
     </div>
 </body>
 <script>
-    //Inicializa o summernote e define suas opções
+    // Inicializa o summernote e define suas opções
     $('#summernote').summernote({
         height: 400,
         callbacks: {
@@ -44,11 +45,10 @@
             },
             onMediaDelete: function(target) {
                 deleteFile(target[0].src);
-
             }
         }
     });
-    //Variáveis globais que auxiliam nas funções(beforeunload) de exclusão de imagens
+    // Variáveis globais que auxiliam nas funções(beforeunload) de exclusão de imagens
     vetor = [''];
     i = -1;
     // Função que faz o upload da foto para a pasta uploads
@@ -97,19 +97,20 @@
         });
     }
 
-    //Verifica se a página será atualizada ou fecha e, antes do evento, chama a função
+    // Verifica se a página será atualizada ou fecha e, antes do evento, chama a função
     $(window).bind("beforeunload", function(event) {
-        deleteFileOnReload(vetor);
+        deleteFileBeforeUnload(vetor);
     });
-    //Deleta todas as imagens passadas no array
-    function deleteFileOnReload(array) {
+
+    // Deleta todas as imagens passadas no array
+    function deleteFileBeforeUnload(array) {
         if (array != '') {
             $.ajax({
                 data: {
                     imgs: JSON.stringify(array)
                 },
                 method: "POST",
-                url: "<?= base_url('summernote/deleteFileOnReload') ?>",
+                url: "<?= base_url('summernote/deleteFileBeforeUnload') ?>",
                 cache: false,
                 success: function(resp) {
                     console.log(resp);
@@ -118,6 +119,7 @@
         }
     }
 
+    // Opções do toastr
     toastr.options = {
         "closeButton": false,
         "debug": false,
