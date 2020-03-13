@@ -13,6 +13,41 @@ class Summernote extends CI_Controller
         $this->load->view('add');
     }
 
+    public function insert()
+    {
+        if ($this->validation()) {
+
+            $this->load->model('summernote_model');
+            if ($this->summernote_model->insert($this->input->post())) {
+                // Set the message and redirect
+                set_notification('notify', ' com sucesso', 'success');
+                redirect('');
+            } else {
+                // Set the message and redirect
+                set_notification('notify', 'Ocorreu um erro ao atualizar ', 'error');
+                redirect('');
+            }
+        }
+    }
+
+    public function validation()
+    {
+        // Check if there is a post type input
+        if ($this->input->post()) {
+
+            // Form validation rules
+            $this->form_validation->set_rules('title', 'Título', 'required|max_length[100]');
+            $this->form_validation->set_rules('text', 'Texto', 'required');
+            if ($this->input->post('id')) {
+                $this->form_validation->set_rules('id', 'Identificador', 'required|numeric');
+            }
+            // Check if the rules have been obeyed
+            return $this->form_validation->run() ?: false;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Adiciona uma imagem a pasta uploads
      *
