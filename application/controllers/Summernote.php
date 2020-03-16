@@ -20,13 +20,17 @@ class Summernote extends CI_Controller
             $this->load->model('summernote_model');
             if ($this->summernote_model->insert($this->input->post())) {
                 // Set the message and redirect
-                set_notification('notify', ' com sucesso', 'success');
+                set_notification('notify', 'Adicionado com sucesso', 'success');
                 redirect('');
             } else {
                 // Set the message and redirect
-                set_notification('notify', 'Ocorreu um erro ao atualizar ', 'error');
+                set_notification('notify', 'Ocorreu um erro ao adicionar', 'error');
                 redirect('');
             }
+        } else {
+            // Set the message and redirect
+            set_notification('notify', 'Ocorreu um erro ao adicionar', 'error');
+            redirect('');
         }
     }
 
