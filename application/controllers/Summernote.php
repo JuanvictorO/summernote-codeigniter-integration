@@ -15,6 +15,11 @@ class Summernote extends CI_Controller
 
     public function insert()
     {
+        //Load session library to use Helper: functions_helper
+        $this->load->library('session');
+    	// Load form validation library
+        $this->load->library('form_validation');
+        
         if ($this->validation()) {
 
             $this->load->model('summernote_model');
