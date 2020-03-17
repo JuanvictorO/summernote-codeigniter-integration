@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Summernote_model extends CI_Model
 {
     /**
-     * Undocumented function
+     * Adiciona na tabela table
      *
-     * @param [type] $data
+     * @param array $data
      * @return bool
      */
     public function insert($data)
