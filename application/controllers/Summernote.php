@@ -123,11 +123,11 @@ class Summernote extends CI_Controller
     }
 
     /**
-     * Deleta uma imagem da pasta uploads quando a página é atualizada ou fechada
+     * Deleta todas as imagens passadas no vetor 'imgs'
      *
      * @return void
      */
-    public function deleteFileBeforeUnload()
+    public function deleteOnCascade()
     {
         if (!$this->input->is_ajax_request()) {
             return false;
