@@ -59,170 +59,26 @@
         </div>
     </div>
 </body>
+<script src="<?= base_url('assets/js/summernote-integration.min.js') ?>"></script>
 <script>
-    // Constante que armazena o base_url do input
-    const base_url = $('#base_url').val();
-
-    // Variável global que vai armazenar os valores antigos do campo do summernote
-    oldValue = '';
-
-    // Inicializa o summernote e define suas opções
-    $('#summernote').summernote({
-                height: 300,
-                callbacks: {
-                    onInit: function() {
-                        oldValue = this.value;
-                        console.log(oldValue);
-                    },
-                    onImageUpload: function(files) {
-                        for (var i = 0; i < files.length; i++) {
-                            $.upload(files[i], $(this));
-                        }
-                    },
-                    onMediaDelete: function(target) {
-                        deleteFile(target[0].src);
-                    },
-                    onKeyup: function(e) {
-                        if (e.keyCode == 8 || e.keyCode == 46) {
-                            var newValue = e.target.innerHTML;
-                            var oldImages = oldValue.match(/<img\s(?:.+?)>/g);
-                            if (oldImages) {
-                                oldImages = oldImages;
-                            } else {
-                                oldImages = [];
-                            }
-                            var newImages = newValue.match(/<img\s(?:.+?)>/g);
-                            if (newImages) {
-                                newImages = newImages;
-                            } else {
-                                newImages = [];
-                            }
-                            oldValue = newValue;
-                            console.log('newImages = ' + newImages + ' \noldImages = ' + oldImages);
-                            var imgsDeletadas = [];
-                            $.each(oldImages, function(i, img) {
-                                var x = 0;
-                                $.each(newImages, function(f, img2) {
-                                    if (img == img2) {
-                                        x = 1;
-                                    }
-                                });
-                                if (x == 0) {
-                                    var temp = img.match(/src="([^"]*)"/);
-                                    temp = temp[1].split('/assets/uploads/');
-                                    imgsDeletadas.push(temp[1]);
-                                }
-                            });
-                            if (imgsDeletadas.length != 0) {
-                                deleteOnCascade(imgsDeletadas);
-                            } else {
-                                oldValue = $('.note-editable.card-block')[0].innerHTML;
-                            }
-                        }
-                    }
-                });
-
-            // Variáveis globais que auxiliam nas funções(beforeunload) de exclusão de imagens
-            vetor = ['']; i = -1;
-
-            // Função que faz o upload da foto para a pasta uploads
-            $.upload = function(file, summernote) {
-                let out = new FormData();
-                out.append('file', file, file.name);
-
-                $.ajax({
-                    data: out,
-                    method: "POST",
-                    url: base_url + "summernote/uploadFile",
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    success: function(res) {
-                        if (res.error == 0) {
-                            summernote.summernote('insertImage', res.message);
-                            var img = res.message.split("/assets/uploads/");
-                            i++;
-                            vetor[i] = img[1];
-                            summernote[0].oldValue = $('.note-editable.card-block')[0].innerHTML;
-                            oldValue = summernote[0].oldValue + '<img src="' + base_url + 'assets/uploads/' + img[1] + '">';
-                        } else {
-                            toastr["warning"](res.message);
-                        }
-                    },
-                    error: function(res) {
-                        alert('Algo deu errado.');
-                    },
-                    dataType: 'json'
-                });
-            }
-
-            // Deleta a imagem passada pela variável src
-            function deleteFile(src) {
-                $.ajax({
-                    data: {
-                        src: src
-                    },
-                    method: "POST",
-                    url: base_url + "summernote/deleteFile",
-                    cache: false,
-                    success: function(resp) {
-                        toastr["success"](resp);
-                    },
-                    error: function(msg) {
-                        toastr["error"](resp);
-                    },
-                    complete: function() {
-                        oldValue = $('.note-editable.card-block')[0].innerHTML;
-                    }
-                });
-            }
-
-            // Desabilita o 'beforeUnload' quando houver um submit no navegador
-            $(document).on("submit", "form", function(event) {
-                // disable unload warning
-                $(window).off('beforeunload');
-            });
-
-            // Verifica se o navegador será atualizado ou fechado e, antes desses eventos, executa a função
-            $(window).bind("beforeunload", function(event) {
-                deleteOnCascade(vetor);
-            });
-
-            // Envia um vetor de imgs para serem excluídas no PHP
-            function deleteOnCascade(array) {
-                if (array != '') {
-                    $.ajax({
-                        data: {
-                            imgs: JSON.stringify(array)
-                        },
-                        method: "POST",
-                        url: base_url + "summernote/deleteOnCascade",
-                        cache: false,
-                        success: function(resp) {
-                            console.log(resp);
-                        }
-                    });
-                }
-            }
-
-            // Opções do toastr
-            toastr.options = {
-                "closeButton": false,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
+    // Opções do toastr
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 </script>
 <!-- Exibe as notificações (se existirem) -->
 <script>

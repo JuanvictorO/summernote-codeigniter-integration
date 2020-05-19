@@ -13,6 +13,11 @@ class Summernote extends CI_Controller
         $this->load->view('add');
     }
 
+    public function listar()
+    {
+        $this->load->view('select');
+    }
+
     public function insert()
     {
         //Load session library to use Helper: functions_helper
