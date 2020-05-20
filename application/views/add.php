@@ -61,6 +61,10 @@
 </body>
 <script src="<?= base_url('assets/js/summernote-integration.min.js') ?>"></script>
 <script>
+    var nome = "Juan";
+    var idade = 19;
+    var misto = `Meu nome é ${nome} e eu tenho ${idade}`;
+    console.log(misto);
     // Opções do toastr
     toastr.options = {
         "closeButton": false,
