@@ -19,29 +19,38 @@ $("#summernote").summernote({
     onMediaDelete: (target) => {
       deleteFile(target[0].src);
     },
-    onKeyup: (e) => {
+    onKeyup: function (e) {
       if (e.keyCode == 8 || e.keyCode == 46) {
         var newValue = e.target.innerHTML;
+
         var oldImages = oldValue.match(/<img\s(?:.+?)>/g);
+
         if (oldImages) {
           oldImages = oldImages;
         } else {
           oldImages = [];
         }
+
         var newImages = newValue.match(/<img\s(?:.+?)>/g);
+
         if (newImages) {
           newImages = newImages;
         } else {
           newImages = [];
         }
+
         oldValue = newValue;
 
         var imgsDeletadas = [];
-        $.each(oldImages, (i, img) => {
+        $.each(oldImages, function (i, img) {
           var x = 0;
-          $.each(newImages, (f, img2) => {
-            if (img == img2) {
+          var src = img.match(/src="([^"]*)"/);
+          $.each(newImages, function (f, img2) {
+            var src2 = img2.match(/src="([^"]*)"/);
+
+            if (src[1] == src2[1]) {
               x = 1;
+              return false;
             }
           });
           if (x == 0) {

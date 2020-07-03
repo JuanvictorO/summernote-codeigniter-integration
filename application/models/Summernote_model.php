@@ -21,4 +21,28 @@ class Summernote_model extends CI_Model
 
         return $this->db->insert('table', $row) ?: false;
     }
+
+    /**
+     * Recebe dados da tabela baseados, ou não, no ID
+     *
+     * @param int|null $id
+     * @return array
+     */
+    public function select_news($id = NULL)
+    {
+        if ($id) {
+            $query = $this->db->select('id,title, text, update_date')
+                ->from('table')
+                ->where('id', $id)
+                ->get()->row();
+        } else {
+            $query = $this->db->select('id,title')
+                ->from('table')
+                ->where('deleted_at', NULL)
+                ->order_by('created_at', 'desc')
+                ->get()->result();
+        }
+
+        return $query;
+    }
 }
