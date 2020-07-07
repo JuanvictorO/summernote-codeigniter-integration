@@ -22,4 +22,4 @@ A branch do codeigniter 4 já é um projeto mais desenvolvido, além de estar ut
 
 4- Você poderá acessar a parte de painel na URL: localhost:8080/painel, com um usuário inicial com o login: user: admin password: admin.
 
-##### Autor: [Juan Victor Oliveira Silva](https://github.com/JuanvictorO "JuanvictorO")
+#### Autor: [Juan Victor Oliveira Silva](https://github.com/JuanvictorO "JuanvictorO")
