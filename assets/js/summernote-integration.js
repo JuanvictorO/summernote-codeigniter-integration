@@ -1,22 +1,22 @@
 // Constante que armazena o base_url do input
-const base_url = $("#base_url").val();
+const base = $("#base_url").val();
 
 // Variável global que vai armazenar os valores antigos do campo do summernote
 oldValue = "";
 
 // Inicializa o summernote e define suas opções
-$("#summernote").summernote({
+$(".summernote").summernote({
   height: 300,
   callbacks: {
-    onInit: () => {
+    onInit: function () {
       oldValue = this.value;
     },
-    onImageUpload: (files) => {
+    onImageUpload: function (files) {
       for (var i = 0; i < files.length; i++) {
         $.upload(files[i], $(this));
       }
     },
-    onMediaDelete: (target) => {
+    onMediaDelete: function (target) {
       deleteFile(target[0].src);
     },
     onKeyup: function (e) {
@@ -47,9 +47,10 @@ $("#summernote").summernote({
           var src = img.match(/src="([^"]*)"/);
           $.each(newImages, function (f, img2) {
             var src2 = img2.match(/src="([^"]*)"/);
-
+            console.log(src[1] + " == " + src2[1]);
             if (src[1] == src2[1]) {
               x = 1;
+              console.log(x);
               return false;
             }
           });
@@ -74,18 +75,18 @@ vetor = [""];
 i = -1;
 
 // Função que faz o upload da foto para a pasta uploads
-$.upload = (file, summernote) => {
+$.upload = function (file, summernote) {
   let out = new FormData();
   out.append("file", file, file.name);
 
   $.ajax({
     data: out,
     method: "POST",
-    url: base_url + "summernote/uploadFile",
+    url: base + "summernote/uploadFile",
     cache: false,
     processData: false,
     contentType: false,
-    success: (res) => {
+    success: function (res) {
       if (res.error == 0) {
         summernote.summernote("insertImage", res.message, function ($image) {
           $image.addClass("img-fluid");
@@ -98,7 +99,7 @@ $.upload = (file, summernote) => {
         oldValue =
           summernote[0].oldValue +
           '<img src="' +
-          base_url +
+          base +
           "assets/uploads/" +
           img[1] +
           '">';
@@ -106,7 +107,7 @@ $.upload = (file, summernote) => {
         toastr["warning"](res.message);
       }
     },
-    error: (res) => {
+    error: function (res) {
       alert("Algo deu errado.");
     },
     dataType: "json",
@@ -120,28 +121,28 @@ function deleteFile(src) {
       src: src,
     },
     method: "POST",
-    url: base_url + "summernote/deleteFile",
+    url: base + "summernote/deleteFile",
     cache: false,
-    success: (resp) => {
+    success: function (resp) {
       toastr["success"](resp);
     },
-    error: (msg) => {
-      toastr["error"](resp);
+    error: function (msg) {
+      toastr["error"](msg);
     },
-    complete: () => {
+    complete: function () {
       oldValue = $(".note-editable.card-block")[0].innerHTML;
     },
   });
 }
 
 // Desabilita o 'beforeUnload' quando houver um submit no navegador
-$(document).on("submit", "form", (event) => {
+$(document).on("submit", "form", function (event) {
   // disable unload warning
   $(window).off("beforeunload");
 });
 
 // Verifica se o navegador será atualizado ou fechado e, antes desses eventos, executa a função
-$(window).bind("beforeunload", (event) => {
+$(window).bind("beforeunload", function (event) {
   deleteOnCascade(vetor);
 });
 
@@ -153,9 +154,9 @@ function deleteOnCascade(array) {
         imgs: JSON.stringify(array),
       },
       method: "POST",
-      url: base_url + "summernote/deleteOnCascade",
+      url: base + "summernote/deleteOnCascade",
       cache: false,
-      success: (resp) => {
+      success: function (resp) {
         console.log(resp);
       },
     });
@@ -168,9 +169,9 @@ function ajax_imgs(id) {
   $.ajax({
     data: "",
     type: "GET",
-    url: base_url + "summernote/getImgs/" + id,
+    url: base + "summernote/getImgs/" + id,
     async: true,
-    success: (json) => {
+    success: function (json) {
       json.content = json.content.match(/<img\s(?:.+?)>/g);
       var imgsToDelete = [];
       $.each(json.content, function (i, img) {
@@ -181,7 +182,7 @@ function ajax_imgs(id) {
       if (imgsToDelete.length != 0) {
         deleteOnCascade(imgsToDelete);
       }
-      window.location.href = base + "summernote/delete/" + id;
+      window.location.href = base + "summernote/deleteBlog/" + id;
     },
     dataType: "json",
   });

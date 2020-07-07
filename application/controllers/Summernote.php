@@ -1,21 +1,38 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Summernote extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('summernoteModel');
+    }
+
     /**
-     * Chama a página add.php
+     * Chama a página add
      *
      * @return void
      */
     public function index()
     {
+        $this->load->library('session');
         $this->load->view('add');
     }
 
+    /**
+     * Chama a página select
+     *
+     * @return void
+     */
     public function listar()
     {
-        $this->load->view('select');
+        $this->load->library('session');
+        $data['result'] = $this->summernoteModel->select();
+
+        $this->load->view('select', $data);
     }
 
     public function insert()
@@ -27,8 +44,7 @@ class Summernote extends CI_Controller
 
         if ($this->validation()) {
 
-            $this->load->model('summernote_model');
-            if ($this->summernote_model->insert($this->input->post())) {
+            if ($this->summernoteModel->insert($this->input->post())) {
                 // Set the message and redirect
                 set_notification('notify', 'Adicionado com sucesso', 'success');
                 redirect('');

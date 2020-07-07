@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -6,8 +5,14 @@
     <meta name="author" content="https://github.com/JuanvictorO">
     <meta name="description" content="Testing the summernote with a table">
 
+    <!-- Font Awesome CDN --->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+    <!-- Custom CSS -->
+    <link href="<?= base_url('assets/') ?>css/index.min.css" rel="stylesheet">
+
     <!-- Jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="<?= base_url('assets/vendor/jquery-3.4.1.min.js') ?>"></script>
 
     <!-- BOOTSTRAP 4.0 CDNjs -->
     <script src="<?= base_url('assets/vendor/') ?>bootstrap-4.4.1/popper.min.js"></script>
@@ -16,16 +21,10 @@
 
     <!-- Summernote CDN -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+
     <!-- Toastr CDN -->
     <link href="<?= base_url('assets/vendor/') ?>toastr/toastr.min.css" rel="stylesheet">
     <script src="<?= base_url('assets/vendor/') ?>toastr/toastr.min.js"></script>
-
-    <!-- Font Awesome CDN --->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
-    <!-- Custom CSS -->
-    <link href="<?= base_url('assets/') ?>css/index.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -42,14 +41,14 @@
         </div>
         <div class="main mt-5 mx-5">
             <div class="container mt-3">
-                <form method="post" action="<?= base_url('summernote/insert') ?>" enctype="multipart/form-data">
+                <form method="post" action="<?= base_url('summernote/insert') ?>">
                     <div class="form-group">
                         <label for="title">Título</label>
                         <input name="title" type="text" class="form-control" id="title" maxlength="100" required>
                     </div>
                     <div class="form-group">
-                        <label for="summernote">Insira o texto aqui:</label>
-                        <textarea id="summernote" name="text"></textarea>
+                        <label>Insira o conteúdo aqui:</label>
+                        <textarea class="summernote" name="text" required></textarea>
                     </div>
                     <div class="text-right">
                         <input class="btn btn-primary px-3 py-2" type="submit">
@@ -59,12 +58,9 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <script src="<?= base_url('assets/js/summernote-integration.min.js') ?>"></script>
 <script>
-    var nome = "Juan";
-    var idade = 19;
-    var misto = `Meu nome é ${nome} e eu tenho ${idade}`;
-    console.log(misto);
     // Opções do toastr
     toastr.options = {
         "closeButton": false,
@@ -76,7 +72,7 @@
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "5000",
+        "timeOut": "8000",
         "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",

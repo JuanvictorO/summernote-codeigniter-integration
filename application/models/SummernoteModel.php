@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Summernote_model extends CI_Model
+class SummernoteModel extends CI_Model
 {
     /**
      * Adiciona na tabela table
@@ -28,18 +28,18 @@ class Summernote_model extends CI_Model
      * @param int|null $id
      * @return array
      */
-    public function select_news($id = NULL)
+    public function select($id = NULL)
     {
+        $this->load->database();
         if ($id) {
             $query = $this->db->select('id,title, text, update_date')
                 ->from('table')
                 ->where('id', $id)
                 ->get()->row();
         } else {
-            $query = $this->db->select('id,title')
+            $query = $this->db->select('id,title,update_date')
                 ->from('table')
-                ->where('deleted_at', NULL)
-                ->order_by('created_at', 'desc')
+                ->order_by('id', 'desc')
                 ->get()->result();
         }
 
