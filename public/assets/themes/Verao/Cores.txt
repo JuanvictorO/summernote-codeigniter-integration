@@ -1,0 +1,11 @@
+Background:
+
+background: rgb(255,254,239);
+background: -moz-linear-gradient(180deg, rgba(255,254,239,1) 0%, rgba(255,254,239,1) 80%, rgba(255,212,128,1) 100%);
+background: -webkit-linear-gradient(180deg, rgba(255,254,239,1) 0%, rgba(255,254,239,1) 80%, rgba(255,212,128,1) 100%);
+background: linear-gradient(180deg, rgba(255,254,239,1) 0%, rgba(255,254,239,1) 80%, rgba(255,212,128,1) 100%);
+
+
+COR CLARA: #f8b431
+COR ESCURA:#ff9600
+COR FOOTER: #617534

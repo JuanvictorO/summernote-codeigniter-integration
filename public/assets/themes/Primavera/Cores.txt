@@ -1,0 +1,3 @@
+Fundo da logo: #134913
+Mais escura: #1c611c
+Mais clara: #bbd8bb

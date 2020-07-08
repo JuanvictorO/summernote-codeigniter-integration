@@ -1,0 +1,57 @@
+p {
+    color: black;
+}
+
+.subtitle-camera {
+    color: gray;
+    padding-top: 10px;
+}
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.pub-2-m {
+    display: none;
+}
+
+.pub-2-d {
+    display: inline;
+}
+
+@media (max-width: 600px) {
+    .pub-2-m {
+        display: inline;
+    }
+    .pub-2-d {
+        display: none;
+    }
+}
+
+
+/********** aside.php **********/
+
+#estacao_radio_large {
+    margin-bottom: -1.5em;
+}
+
+.div-captcha {
+    width: 304px;
+    height: 78px;
+}
+
+.div-station {
+    background-color: transparent
+}
+
+#li-facebook {
+    background: linear-gradient(to right, #3b5998, #3f729b)
+}
+
+#li-youtube {
+    background: linear-gradient(to right, #c4302b, #9d2622)
+}
+
+#li-instagram {
+    background: linear-gradient(to right, #87536a, #3f729b)
+}

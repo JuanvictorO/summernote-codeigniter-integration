@@ -1,0 +1,10 @@
+Background fundo:
+
+background: rgb(249,254,255);
+background: -moz-linear-gradient(180deg, rgba(249,254,255,1) 0%, rgba(201,223,227,1) 100%);
+background: -webkit-linear-gradient(180deg, rgba(249,254,255,1) 0%, rgba(201,223,227,1) 100%);
+background: linear-gradient(180deg, rgba(249,254,255,1) 0%, rgba(201,223,227,1) 100%);
+
+Cor escura: #308e9f
+Cor clara: #b6dce3
+Cor logo: #286874

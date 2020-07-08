@@ -1,0 +1,159 @@
+@media (min-width: 700px) {
+    .radiosize {
+        margin-top: -70px;
+        margin-bottom: -110px;
+    }
+}
+
+@media (min-width: 800px) {
+    .radiosize {
+        margin-top: -90px;
+        margin-bottom: -140px;
+    }
+}
+
+@media (min-width: 900px) {
+    .radiosize {
+        margin-top: -110px;
+        margin-bottom: -140px;
+    }
+}
+
+@media (min-width: 992px) {
+    .radiosize {
+        margin-top: -140px;
+        margin-bottom: -140px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .radiosize {
+        margin-top: -78px;
+        margin-bottom: -30px
+    }
+}
+
+@media (min-width: 1100px) {
+    .radiosize {
+        margin-top: -27px;
+        margin-bottom: 0px
+    }
+}
+
+@media (min-width: 1200px) {
+    .radiosize {
+        margin-top: -70px;
+        margin-bottom: -15px
+    }
+}
+
+@media (min-width: 1300px) {
+    .radiosize {
+        margin-top: -67px;
+        margin-bottom: -12px
+    }
+}
+
+@media (min-width: 1400px) {
+    .radiosize {
+        margin-top: -80px;
+        margin-bottom: -14px
+    }
+}
+
+@media (min-width: 1500px) {
+    .radiosize {
+        margin-top: -90px;
+        margin-bottom: -15px
+    }
+}
+
+@media (min-width: 1600px) {
+    .radiosize {
+        margin-top: -97px;
+        margin-bottom: -15px
+    }
+}
+
+@media (min-width: 1700px) {
+    .radiosize {
+        margin-top: -104px;
+        margin-bottom: -15px
+    }
+}
+
+@media (min-width: 1900px) {
+    .radiosize {
+        margin-top: -124px;
+        margin-bottom: -15px;
+    }
+}
+
+p {
+    color: black;
+}
+
+div {
+    color: black;
+}
+
+.um,
+.dois {
+    cursor: pointer;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.principal {
+    max-width: 1336px;
+    margin: 0 auto
+}
+
+.iframe-radio {
+    margin-top: -54px;
+    margin-bottom: -30% !important;
+}
+
+.div-img-cam {
+    background-color: #607382 !important;
+    color: #fff !important
+}
+
+#h1-cam {
+    margin-bottom: 0;
+    background-color: #607382;
+    color: #fff !important
+}
+
+#h5-cam {
+    margin-top: 11px
+}
+
+#div-cam-sm {
+    margin-top: -25px;
+    margin-bottom: -10px;
+}
+
+.name-cam {
+    color: gray;
+    text-align: center;
+    padding-top: 10px
+}
+
+#h1-subtitle {
+    font-size: 1em;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    background-color: #607382 !important;
+    color: #fff;
+    margin-top: -23px
+}
+
+#span-descubra {
+    letter-spacing: 0px;
+    font-size: 13.5px;
+    background-color: yellow;
+    color: #607382 !important;
+}
