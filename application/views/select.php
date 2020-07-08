@@ -37,7 +37,7 @@
             <div class="list-group list-group-flush pl-4 mt-2">
                 <a href="<?= base_url('') ?>"><i class="fas fa-plus pr-2"></i>Inserir</a>
                 <a href="<?= base_url('summernote/listar') ?>"><i class="fas fa-list pr-2"></i>Listar</a>
-                <a href="<?= base_url('summernote/sobre') ?>"><i class="fas fa-info pr-2"></i>Sobre</a>
+                <a href="https://github.com/JuanvictorO/summernote-codeigniter-integration#readme"><i class="fas fa-info pr-2"></i>Sobre</a>
             </div>
         </div>
         <div class="main mt-5 mx-5">
