@@ -172,9 +172,9 @@ function ajax_imgs(id) {
     url: base + "summernote/getImgs/" + id,
     async: true,
     success: function (json) {
-      json.content = json.content.match(/<img\s(?:.+?)>/g);
+      json.text = json.text.match(/<img\s(?:.+?)>/g);
       var imgsToDelete = [];
-      $.each(json.content, function (i, img) {
+      $.each(json.text, function (i, img) {
         var temp = img.match(/src="([^"]*)"/);
         temp = temp[1].split("/assets/uploads/");
         imgsToDelete.push(temp[1]);
@@ -182,7 +182,7 @@ function ajax_imgs(id) {
       if (imgsToDelete.length != 0) {
         deleteOnCascade(imgsToDelete);
       }
-      window.location.href = base + "summernote/deleteBlog/" + id;
+      window.location.href = base + "summernote/delete/" + id;
     },
     dataType: "json",
   });

@@ -60,6 +60,33 @@ class Summernote extends CI_Controller
         }
     }
 
+    /**
+     * Atualiza dados da tabela
+     *
+     * @param array $data
+     * @return bool
+     */
+    public function update()
+    {
+        //Load session library to use Helper: functions_helper
+        $this->load->library('session');
+
+        $id = $this->input->post('id');
+        if (is_numeric($id) && !empty($id)) {
+
+            if ($this->summernoteModel->update($this->input->post())) {
+                set_notification('notify', 'A notícia foi atualizada com sucesso', 'success');
+                redirect('summernote/listar');
+            } else {
+                // Set the message and redirect
+                set_notification('notify', 'Ocorreu um erro ao atualizar a notícia', 'error');
+                redirect('summernote/listar');
+            }
+        } else {
+            return FALSE;
+        }
+    }
+
     public function validation()
     {
         // Check if there is a post type input
@@ -75,6 +102,26 @@ class Summernote extends CI_Controller
             return $this->form_validation->run() ?: false;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * Retorna o conteúdo com as imagens de uma notícia
+     *
+     * @param int $id
+     * @return array|bool
+     */
+    public function getImgs($id)
+    {
+        if (!$this->input->is_ajax_request()) {
+            return false;
+        } else {
+            if (is_numeric($id) && !empty($id)) {
+                $row = $this->summernoteModel->selectImgs($id);
+                echo json_encode($row);
+            } else {
+                return false;
+            }
         }
     }
 
@@ -160,9 +207,54 @@ class Summernote extends CI_Controller
                     $path = "./assets/uploads/" . $vetor[$i];
                     if (file_exists($path) == 1) {
                         unlink("./assets/uploads/" . $vetor[$i]);
-                        echo 'A imagem: ' . $vetor[$i] . ' foi excluída com sucesso!';
+                        echo 'A imagem: ' . $vetor[$i] . ' foi excluída com sucesso! \n';
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Deleta dados da tabela
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function delete($id = NULL)
+    {
+        //Load session library to use Helper: functions_helper
+        $this->load->library('session');
+
+        if (is_numeric($id) and !empty($id)) {
+            if ($this->summernoteModel->delete($id)) {
+                set_notification('notify', 'A Notícia foi excluída com sucesso', 'success');
+                redirect('summernote/listar');
+            } else {
+                set_notification('notify', 'Ocorreu um erro ao excluir a notícia', 'error');
+                redirect('summernote/listar');
+            }
+        } else {
+            set_notification('notify', 'A notícia não foi identificada', 'error');
+            redirect('summernote/listar');
+        }
+    }
+
+    /**
+     * Retorna um json com informações associadas ao id
+     *
+     * @param int $id
+     * @return array|bool
+     */
+    public function ajax($id)
+    {
+        if (!$this->input->is_ajax_request()) {
+            return FALSE;
+        } else {
+            if (is_numeric($id) && !empty($id)) {
+                $row = $this->summernoteModel->select($id);
+                echo json_encode($row);
+            } else {
+                return FALSE;
             }
         }
     }

@@ -45,4 +45,39 @@ class SummernoteModel extends CI_Model
 
         return $query;
     }
+
+    /**
+     * Retorna o conteúdo de uma notícia
+     *
+     * @param int $id
+     * @return array
+     */
+    public function selectImgs($id)
+    {
+        $query = $this->db->select('text')
+            ->from('table')
+            ->where('id', $id)
+            ->get()->row();
+
+        return $query;
+    }
+
+    public function update($data)
+    {
+        $row = array(
+            'title'       => $data['titulo'],
+            'text'        => $data['conteudo'],
+            'update_date' => date('Y-m-d H:i:s')
+        );
+
+        $this->db->where('id', $data['id']);
+
+        return $this->db->update('table', $row) ?: false;
+    }
+
+    public function delete($id = NULL)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('table') ?: false;
+    }
 }

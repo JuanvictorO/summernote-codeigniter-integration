@@ -60,10 +60,10 @@
                                     <td class="text-center">
                                         <div class="col">
                                             <div class="btn-group border" role="group">
-                                                <button type="button" class="item p-1 mx-1" onclick="ajax(<?= $row->id ?>,1,'summernote/ajax')" title="editar">
+                                                <button type="button" class="item p-1 mx-1" onclick="ajax(<?= $row->id ?>, 1,'summernote/ajax/')" title="editar">
                                                     <i class="far fa-edit text-dark"></i>
                                                 </button>
-                                                <button type="button" class="item p-1 mx-1 " onclick="ajax(<?= $row->id ?>,2,'summernote/ajax')" title="detalhes">
+                                                <button type="button" class="item p-1 mx-1 " onclick="ajax(<?= $row->id ?>, 2,'summernote/ajax/')" title="detalhes">
                                                     <i class="fas fa-info-circle text-dark"></i>
                                                 </button>
                                                 <button type="button" class=" item p-1 mx-1 " onclick="excluir(<?= $row->id ?>)" title="excluir">
@@ -81,6 +81,74 @@
         </div>
     </div>
 </body>
+<!-------------- MODAL EDITAR --------------->
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="title-2">Editar notícia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('summernote/update') ?>" method="post">
+                    <div class="form-group">
+                        <label class="control-label mb-1">Título</label>
+                        <input maxlength="255" id="tituloE" name="titulo" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label mb-1">Conteúdo</label>
+                        <textarea name="conteudo" id="conteudoE" class="editor mt-2 summernote" placeholder="Disserte sobre a notícia"></textarea>
+                    </div>
+                    <input id="idE" name="id" type="hidden" class="form-control" value=''>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-info">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------ MODAL DETALHES --------->
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="title-2">Detalhes da notícia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label mb-1">Título</label>
+                    <input maxlength="255" name="titulo" id="tituloD" type="text" class="form-control" disabled>
+                </div>
+                <div class="form-group">
+                    <label class="control-label mb-1">Data de atualização</label>
+                    <textarea id="atualizacaoD" class="form-control" name="atualizacao" rows="1" disabled></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="control-label mb-1">Conteúdo</label>
+                    <textarea name="conteudo" id="conteudoD" class="form-control" rows="10"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- biblioteca que faz buttons de confirmação/negação -->
+<link rel="stylesheet" href="<?= base_url('assets/vendor/jquery-confirm/jquery-confirm.min.css') ?>">
+<script type="text/javascript" src="<?= base_url('assets/vendor/jquery-confirm/jquery-confirm.min.js') ?>"></script>
+<!-- Arquivo com funções para auxiliar no módulo de editar, visualizar e excluir umas notícia -->
+<script src="<?= base_url('assets/js/functions.min.js') ?>"></script>
+<!-- Arquivo com função ajax que recebe as informações do ID passado e redireciona para o modal correto (edição ou detalhes) -->
+<script src="<?= base_url('assets/js/ajax.min.js') ?>"></script>
+<!-- Arquivo js com as modificações feitas na biblioteca summernote -->
 <script src="<?= base_url('assets/js/summernote-integration.min.js') ?>"></script>
 
 <!-- Loading datatables -->
