@@ -36,7 +36,8 @@
             <div class="list-group list-group-flush pl-4 mt-2">
                 <a href="<?= base_url('') ?>"><i class="fas fa-plus pr-2"></i>Inserir</a>
                 <a href="<?= base_url('summernote/listar') ?>"><i class="fas fa-list pr-2"></i>Listar</a>
-                <a href="https://github.com/JuanvictorO/summernote-codeigniter-integration#readme"><i class="fas fa-info pr-2"></i>Sobre</a>
+                <a target="_blank" href="https://github.com/JuanvictorO/summernote-codeigniter-integration#readme"><i
+                        class="fas fa-info pr-2"></i>Sobre</a>
             </div>
         </div>
         <div class="main mt-5 mx-5">
@@ -61,28 +62,28 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
 <script src="<?= base_url('assets/js/summernote-integration.min.js') ?>"></script>
 <script>
-    // Opções do toastr
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "8000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
+// Opções do toastr
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "8000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
 </script>
 <!-- Exibe as notificações (se existirem) -->
 <script>
-    <?= get_notification('notify') ?>
+<?= get_notification('notify') ?>
 </script>
 
 </html>

@@ -7,7 +7,8 @@
     <meta name="description" content="Summernote integration/modification with the framework codeigniter">
 
     <!-- Jquery CDN -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <!-- BOOTSTRAP 4.0 CDNjs -->
     <script src="<?= base_url('assets/vendor/') ?>bootstrap-4.4.1/popper.min.js"></script>
@@ -37,7 +38,8 @@
             <div class="list-group list-group-flush pl-4 mt-2">
                 <a href="<?= base_url('') ?>"><i class="fas fa-plus pr-2"></i>Inserir</a>
                 <a href="<?= base_url('summernote/listar') ?>"><i class="fas fa-list pr-2"></i>Listar</a>
-                <a href="https://github.com/JuanvictorO/summernote-codeigniter-integration#readme"><i class="fas fa-info pr-2"></i>Sobre</a>
+                <a target="_blank" href="https://github.com/JuanvictorO/summernote-codeigniter-integration#readme"><i
+                        class="fas fa-info pr-2"></i>Sobre</a>
             </div>
         </div>
         <div class="main mt-5 mx-5">
@@ -54,25 +56,28 @@
                         </thead>
                         <tbody>
                             <?php foreach ($result as $row) : ?>
-                                <tr>
-                                    <td class="limit-1"><?= $row->title ?></td>
-                                    <td><?= convert_date($row->update_date) ?></td>
-                                    <td class="text-center">
-                                        <div class="col">
-                                            <div class="btn-group border" role="group">
-                                                <button type="button" class="item p-1 mx-1" onclick="ajax(<?= $row->id ?>, 1,'summernote/ajax/')" title="editar">
-                                                    <i class="far fa-edit text-dark"></i>
-                                                </button>
-                                                <button type="button" class="item p-1 mx-1 " onclick="ajax(<?= $row->id ?>, 2,'summernote/ajax/')" title="detalhes">
-                                                    <i class="fas fa-info-circle text-dark"></i>
-                                                </button>
-                                                <button type="button" class=" item p-1 mx-1 " onclick="excluir(<?= $row->id ?>)" title="excluir">
-                                                    <i class="fas fa-trash-alt text-dark"></i>
-                                                </button>
-                                            </div>
+                            <tr>
+                                <td class="limit-1"><?= $row->title ?></td>
+                                <td><?= convert_date($row->update_date) ?></td>
+                                <td class="text-center">
+                                    <div class="col">
+                                        <div class="btn-group border" role="group">
+                                            <button type="button" class="item p-1 mx-1"
+                                                onclick="ajax(<?= $row->id ?>, 1,'summernote/ajax/')" title="editar">
+                                                <i class="far fa-edit text-dark"></i>
+                                            </button>
+                                            <button type="button" class="item p-1 mx-1 "
+                                                onclick="ajax(<?= $row->id ?>, 2,'summernote/ajax/')" title="detalhes">
+                                                <i class="fas fa-info-circle text-dark"></i>
+                                            </button>
+                                            <button type="button" class=" item p-1 mx-1 "
+                                                onclick="excluir(<?= $row->id ?>)" title="excluir">
+                                                <i class="fas fa-trash-alt text-dark"></i>
+                                            </button>
                                         </div>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -99,7 +104,8 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label mb-1">Conteúdo</label>
-                        <textarea name="conteudo" id="conteudoE" class="editor mt-2 summernote" placeholder="Disserte sobre a notícia"></textarea>
+                        <textarea name="conteudo" id="conteudoE" class="editor mt-2 summernote"
+                            placeholder="Disserte sobre a notícia"></textarea>
                     </div>
                     <input id="idE" name="id" type="hidden" class="form-control" value=''>
                     <div class="modal-footer">
@@ -155,60 +161,60 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendor/datatables/') ?>datatables.min.css" />
 <script type="text/javascript" src="<?= base_url('assets/vendor/datatables/') ?>datatables.min.js"></script>
 <script>
-    // Opções do toastr
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
+// Opções do toastr
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
 
-    /* Data table */
-    var table = $('.table').DataTable({
-        //Não ordenar como default nenhuma
-        "order": [],
-        "ordering": false,
+/* Data table */
+var table = $('.table').DataTable({
+    //Não ordenar como default nenhuma
+    "order": [],
+    "ordering": false,
 
-        language: {
-            "sEmptyTable": "Nenhum registro encontrado",
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sInfoThousands": ".",
-            "sLengthMenu": "_MENU_  resultados por página",
-            "sLoadingRecords": "Carregando...",
-            "sProcessing": "Processando...",
-            "sZeroRecords": "Nenhum registro encontrado",
-            "sSearch": "Pesquisar",
-            "oPaginate": {
-                "sNext": "Próximo",
-                "sPrevious": "Anterior",
-                "sFirst": "Primeiro",
-                "sLast": "Último"
-            },
-            "oAria": {
-                "sSortAscending": ": Ordenar colunas de forma ascendente",
-                "sSortDescending": ": Ordenar colunas de forma descendente"
-            }
+    language: {
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_  resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+            "sNext": "Próximo",
+            "sPrevious": "Anterior",
+            "sFirst": "Primeiro",
+            "sLast": "Último"
+        },
+        "oAria": {
+            "sSortAscending": ": Ordenar colunas de forma ascendente",
+            "sSortDescending": ": Ordenar colunas de forma descendente"
         }
-    });
+    }
+});
 </script>
 
 <!-- Get notification PAGE -->
 <script>
-    <?= get_notification('notify') ?>
+<?= get_notification('notify') ?>
 </script>
 
 </html>
