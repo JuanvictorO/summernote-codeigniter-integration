@@ -12,9 +12,13 @@ A branch do codeigniter 4 já é um projeto mais desenvolvido, além de estar ut
 
 3- Certifique-se que o seu PHP, ou seu APACHE, tem as configurações e bibliotecas necessárias para se trabalhar com imagens e arquivos pesados.
 
-4- Quando estiver tudo configurado, basta abrir seu terminal (Ex: git bash) na pasta do projeto e executar o comando `php -S localhost:8080` (seu projeto poderá ser acessado por essa URL).
+4- Quando estiver tudo configurado, basta abrir seu terminal (Ex: git bash) na pasta do projeto e executar o comando `php -S localhost:8080` (seu projeto poderá ser acessado por essa URL). Caso você não tenha o PHP Chocolatey instalado, você pode usar um APACHE. Quando colar a pasta no servidor, certifique-se de trocar a variável base_url do arquivo: application/config/config.php. Ex: ($config['base_url'] = 'http://localhost/summernote-codeigniter-integration').
+
+5- Não se esqueça de rodar o script MySQL encontrando na pasta: sql/sql.sql
 
 ## Como implementar (branch: codeigniter_4)?
+
+#### Esta branch ainda não está pronta
 
 1- Rode o script sql em um banco de dados local (Ex: MySQL Workbench).
 
@@ -23,5 +27,7 @@ A branch do codeigniter 4 já é um projeto mais desenvolvido, além de estar ut
 3- Quando estiver tudo configurado, basta abrir seu terminal (Ex: git bash) na pasta do projeto e executar o comando: `php spark serve` (seu projeto poderá ser acessado por essa URL).
 
 4- Você poderá acessar a parte de painel na URL: localhost:8080/painel, com um usuário inicial com o login: user: admin@admin.com password: admin2020.
+
+5- Não se esqueça de rodar o script MySQL encontrando na pasta: sql/sql.sql
 
 #### Autor: [Juan Victor Oliveira Silva](https://github.com/JuanvictorO "JuanvictorO")
